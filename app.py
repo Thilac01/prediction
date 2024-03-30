@@ -3,10 +3,13 @@ import time
 
 df = pd.read_csv('data.csv')
 
-X = df[['Age', 'BloodPressure', 'Insulin']]
-y = df['Outcome']
+# Feature scaling
+df_scaled = (df - df.mean()) / df.std()
 
-alpha = 0.0001
+X = df_scaled[['Age', 'BloodPressure', 'Insulin']]
+y = df_scaled['Outcome']
+
+alpha = 0.01  # Adjust learning rate
 iterations = 1000
 
 c1 = 0.0
@@ -29,9 +32,10 @@ for epoch in range(iterations):
 
         y_pred = c1 * x1 + c2 * x2 + c3 * x3
 
-        c1_gradient += (1/m) * x1 * (y_pred - y.iloc[i])
-        c2_gradient += (1/m) * x2 * (y_pred - y.iloc[i])
-        c3_gradient += (1/m) * x3 * (y_pred - y.iloc[i])
+        # Regularization terms added
+        c1_gradient += (1/m) * x1 * (y_pred - y.iloc[i]) + 0.01 * c1
+        c2_gradient += (1/m) * x2 * (y_pred - y.iloc[i]) + 0.01 * c2
+        c3_gradient += (1/m) * x3 * (y_pred - y.iloc[i]) + 0.01 * c3
 
     c1 -= alpha * c1_gradient
     c2 -= alpha * c2_gradient
