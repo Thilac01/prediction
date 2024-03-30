@@ -19,6 +19,7 @@ This repository contains a simple implementation of a linear regression model to
 2. Install the required Python packages:
 
     ```bash
+    pip install pandas
     pip install joblib
     ```
 
