@@ -13,7 +13,7 @@ This repository contains a simple implementation of a linear regression model to
 1. Clone this repository:
 
     ```bash
-    git clone https://github.com/your_username/linear-regression-diabetes-prediction.git
+    git clone  https://github.com/Thilac01/prediction
     ```
 
 2. Install the required Python packages:
